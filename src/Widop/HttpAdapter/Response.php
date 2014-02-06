@@ -86,4 +86,9 @@ class Response
     {
         $this->effectiveUrl = $effectiveUrl;
     }
+    public function __toString()
+    {
+        $value = $this->getBody();
+        return is_string($value) ? $value : '';
+    }
 }
