@@ -52,11 +52,16 @@ class GuzzleHttpAdapter extends AbstractHttpAdapter
 
         try {
             $response = $request->send();
-
-            return $this->createResponse($url, $response->getBody(true), $response->getEffectiveUrl());
         } catch (\Exception $e) {
             throw HttpAdapterException::cannotFetchUrl($url, $this->getName(), $e->getMessage());
         }
+
+        return $this->createResponse(
+            $url,
+            $response->getHeaders()->toArray(),
+            $response->getBody(true),
+            $response->getEffectiveUrl()
+        );
     }
 
     /**
@@ -73,11 +78,16 @@ class GuzzleHttpAdapter extends AbstractHttpAdapter
 
         try {
             $response = $request->send();
-
-            return $this->createResponse($url, $response->getBody(true), $response->getEffectiveUrl());
         } catch (\Exception $e) {
             throw HttpAdapterException::cannotFetchUrl($url, $this->getName(), $e->getMessage());
         }
+
+        return $this->createResponse(
+            $url,
+            $response->getHeaders()->toArray(),
+            $response->getBody(true),
+            $response->getEffectiveUrl()
+        );
     }
 
     /**
