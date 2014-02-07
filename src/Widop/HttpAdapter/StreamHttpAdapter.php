@@ -45,7 +45,7 @@ class StreamHttpAdapter extends AbstractHttpAdapter
      *
      * @throws \Widop\HttpAdapterBundle\Exception\HttpAdapterException If an error occured.
      *
-     * @return @return \Widop\HttpAdapter\Response The response.
+     * @return @return \Widop\HttpAdapter\HttpResponse The response.
      */
     protected function execute($url, $context)
     {
@@ -65,7 +65,7 @@ class StreamHttpAdapter extends AbstractHttpAdapter
 
         fclose($fp);
 
-        return $this->createResponse($url, $content, $effectiveUrl);
+        return $this->createResponse($url, $metadata['wrapper_data'], $content, $effectiveUrl);
     }
 
     /**

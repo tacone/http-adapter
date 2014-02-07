@@ -48,10 +48,12 @@ class BuzzHttpAdapter extends AbstractHttpAdapter
         $this->configure();
 
         try {
-            return $this->createResponse($url, $this->browser->get($url, $headers)->getContent());
+            $response = $this->browser->get($url, $headers);
         } catch (\Exception $e) {
             throw HttpAdapterException::cannotFetchUrl($url, $this->getName(), $e->getMessage());
         }
+
+        return $this->createResponse($url, $response->getHeaders(), $response->getContent());
     }
 
     /**
@@ -67,10 +69,12 @@ class BuzzHttpAdapter extends AbstractHttpAdapter
         }
 
         try {
-            return $this->createResponse($url, $this->browser->post($url, $headers, $post)->getContent());
+            $response = $this->browser->post($url, $headers, $post);
         } catch (\Exception $e) {
             throw HttpAdapterException::cannotFetchUrl($url, $this->getName(), $e->getMessage());
         }
+
+        return $this->createResponse($url, $response->getHeaders(), $response->getContent());
     }
 
     /**

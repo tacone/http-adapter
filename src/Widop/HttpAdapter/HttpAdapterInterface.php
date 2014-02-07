@@ -31,7 +31,7 @@ interface HttpAdapterInterface
      *
      * @throws \Widop\HttpAdapter\HttpAdapterException If an error occured.
      *
-     * @return \Widop\HttpAdapter\Response The fetched response.
+     * @return \Widop\HttpAdapter\HttpResponse The fetched response.
      */
     function getContent($url, array $headers = array());
 
@@ -45,7 +45,7 @@ interface HttpAdapterInterface
      *
      * @throws \Widop\HttpAdapter\HttpAdapterException If an error occured.
      *
-     * @return string The fetched content.
+     * @return \Widop\HttpAdapter\HttpResponse The fetched response.
      */
     function postContent($url, array $headers = array(), array $content = array(), array $files = array());
 
